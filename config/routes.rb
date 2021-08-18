@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :blocks
-  resources :users, only[:create]
+  resources :users
  
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

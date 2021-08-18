@@ -33,20 +33,18 @@ const CreateBlock = ({ handleNewBlock, errors}) => {
 
     return (
         <div>
-            <Errors errors={errors}/>
-            <form onSubmit={onSubmit}>
-                <label>Title:</label>
-                <input onChange={onChange} name="title" type="text"/>
-                <br/>
-                <label>Block Content:</label>
-                <input onChange={onChange} name="content" type="textfield"/>
-                <br/>
-                <label for="category_id">Pick a date:</label>
-                <select onChange={onChange} name="date" id="date">
-                    <option disabled selected value> -- select an option -- </option>
-                </select>
-                <input type="submit" value="Create Block"/>
-            </form>
+            <form onSubmit={onSubmit} >
+                <label for="title">Title:</label><br/>
+                    <input onChange={onChange} type="text" id="title" name="title" /><br/>
+                <label for="content">Time:</label><br/>
+                    <textarea onChange={onChange} type="text" id="content" name="content" /><br/><br/>
+                    <input type="submit" value="Submit"/>
+                <label for="content">Date:</label><br/>
+                    <textarea onChange={onChange} type="text" id="content" name="content" /><br/><br/>
+                    <input type="submit" value="Submit"/>
+            </form> 
+            <br/>
+            <Errors errors={errors} />
         </div>
     )
 }
