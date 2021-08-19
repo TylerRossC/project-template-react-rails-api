@@ -15,10 +15,10 @@ const NavBar = ({ currentUser }) => {
                       id="nav-dropdown-dark-example"
                       title="Menu"
                       menuVariant="dark">
-                      <NavDropdown.Item href="/Signup">Sign Up</NavDropdown.Item>
-                      <NavDropdown.Item href="/Login">Login</NavDropdown.Item>
-                      <NavDropdown.Item href="/Home">Home!</NavDropdown.Item>
-                      <NavDropdown.Item href="/Blocks">Create Block</NavDropdown.Item>
+                      <NavDropdown.Item href="/signup">Sign Up</NavDropdown.Item>
+                      <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                      <NavDropdown.Item href="/home">Home!</NavDropdown.Item>
+                      <NavDropdown.Item href="/createblock">Create Block</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="/logout">Log Out</NavDropdown.Item>
                   </NavDropdown>

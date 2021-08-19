@@ -1,6 +1,29 @@
-const Home = () => {
+// import Nav from 'react-bootstrap/Nav'
+// import { useEffect, useState } from 'react'
+// import CreateBlock from './CreateBlock'
+import Blocks from './Blocks'
+import Errors from './Errors'
+
+
+const Home = ({currentUser, errors, blocks, setBlocks}) => {
+    
+    
+    const renderBlocks = () => {
+        debugger
+        return blocks.map(block => {
+            return <Blocks key={block.id} block={block} setBlocks={setBlocks} errors={errors} currentUser={currentUser} />
+        })
+    }
+    
+    
     return(
-        <h1> WELCOME HOME!</h1>
+        <div>
+            <h1> WELCOME HOME!</h1>
+            <Errors errors={errors} />
+            {renderBlocks()}
+            <br/>
+        </div>
+
     )
 }
 

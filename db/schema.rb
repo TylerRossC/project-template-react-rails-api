@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(version: 2021_08_17_195107) do
   enable_extension "plpgsql"
 
   create_table "blocks", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title"
     t.string "time"
-    t.date "date"
+    t.string "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

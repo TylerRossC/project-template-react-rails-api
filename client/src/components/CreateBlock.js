@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Errors from './Errors'
 
 
-const CreateBlock = ({ handleNewBlock, errors}) => {
+const CreateBlock = ({ handleUserLoginAndSignup, errors, setBlocks, blocks}) => {
 
     const [state, setState] = useState({})
 
@@ -23,11 +23,12 @@ const CreateBlock = ({ handleNewBlock, errors}) => {
             body: JSON.stringify(state)
         }
 
-        // fetch('http://localhost:3000/users', config)
-        fetch('/blocks', config)   // need to set up proxy
+        fetch('/blocks', config)  
         .then(res => res.json())
-        .then(data => handleNewBlock(data))
-        // .catch(error => console.log(error, 'error'))
+        .then(data => {
+            setBlocks([...blocks, data.block])
+            handleUserLoginAndSignup(data)
+        })
     }
 
 
@@ -35,12 +36,11 @@ const CreateBlock = ({ handleNewBlock, errors}) => {
         <div>
             <form onSubmit={onSubmit} >
                 <label for="title">Title:</label><br/>
-                    <input onChange={onChange} type="text" id="title" name="title" /><br/>
-                <label for="content">Time:</label><br/>
-                    <textarea onChange={onChange} type="text" id="content" name="content" /><br/><br/>
-                    <input type="submit" value="Submit"/>
-                <label for="content">Date:</label><br/>
-                    <textarea onChange={onChange} type="text" id="content" name="content" /><br/><br/>
+                    <input onChange={onChange} type="text" id="title" name="title" /><br/><br/>
+                <label for="time">Time:</label><br/>
+                    <input onChange={onChange} type="text" id="time" name="time" /><br/><br/>
+                <label for="date">Date:</label><br/>
+                    <input onChange={onChange} type="text" id="date" name="date" /><br/><br/>
                     <input type="submit" value="Submit"/>
             </form> 
             <br/>

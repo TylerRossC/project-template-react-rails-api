@@ -13,7 +13,12 @@ class UsersController < ApplicationController
             user = User.find(session[:user_id])
             render json: { user: user }, status: :ok
         end
-        
+        # user = User.find_by(id: session[:user_id])
+        # if user 
+        #     render json: { user: user }
+        # else
+        #     render json: { errors: ["Not authorized"] }, status: :unauthorized
+        # end
     end
 
     private
