@@ -18,21 +18,27 @@ const App = () => {
   const [blocks, setBlocks] = useState([])
 
   const handleUserLoginAndSignup = (data) => {
-    data.errors ? setErrors(data.errors) : setCurrentUser(data.user)
+    data.errors ? setErrors(data.errors) : setUserAndBlocks(data)
     if(!data.errors){
       history.push('/home')
       setErrors([])
     }
   }
-
-  const checkSessionId = () => {
+  
+  const setUserAndBlocks = (data) => {
+    setCurrentUser(data.user)
+    setBlocks(data.blocks)
+  }
+  
+  const fetchUserAndBlocks = () => {
     fetch('/me')
     .then(res => res.json())
-    .then(data => setCurrentUser(data.user))
+    .then(data => setUserAndBlocks(data))
   }
+
     
   useEffect(() => {
-    checkSessionId()
+    fetchUserAndBlocks()
   }, [])
 
   return (

@@ -9,7 +9,6 @@ const Home = ({currentUser, errors, blocks, setBlocks}) => {
     
     
     const renderBlocks = () => {
-        debugger
         return blocks.map(block => {
             return <Blocks key={block.id} block={block} setBlocks={setBlocks} errors={errors} currentUser={currentUser} />
         })
