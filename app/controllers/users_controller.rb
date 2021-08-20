@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         # check for session id and log user in if they have one
         if session[:user_id]
             user = User.find(session[:user_id])
-            render json: { user: user }, status: :ok
+            render json: { user: user, blocks: user.blocks }, status: :ok
         end
         # user = User.find_by(id: session[:user_id])
         # if user 

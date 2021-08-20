@@ -1,8 +1,12 @@
 class BlocksController < ApplicationController
     
     def index 
-        blocks = Block.all
-        render json: {blocks: blocks}, status: :ok
+        if session[:user_id]
+            user = User.find(session[:user_id])
+            blocks = {blocks: user.blocks}
+            render json: blocks, status: :ok
+        end
+
     end
 
     def create
@@ -13,10 +17,6 @@ class BlocksController < ApplicationController
         else
             render json: { errors: ["log in to create a TimeBlock"] }, status: :unauthorized
         end
-        # block = @current_user.blocks.build(block_params)
-        # if block.save! 
-        #     render json: { block: block }, status: 201
-        # end
     end
 
     def show 
@@ -25,12 +25,18 @@ class BlocksController < ApplicationController
     end
 
     def update 
-    
+        block = Block.find(params[:id])
+        if block[:user_id] == session[:user_id]
+            block.update(block_params)
+            render json: { block: block }, status: :accepted
+        else
+            render json: {errors: ["Not authorized"]}, status: :unauthorized 
+        end
     end
 
     def destroy 
        block = Block.find(params[:id])
-       if post[:user_id] === session[:user_id]
+       if block[:user_id] === session[:user_id]
             block.destroy 
             head :no_content
        else
@@ -41,6 +47,6 @@ class BlocksController < ApplicationController
     private 
 
     def block_params
-        params.permit(:title, :time, :date)
+        params.permit(:user_id, :title, :time, :date)
     end
 end

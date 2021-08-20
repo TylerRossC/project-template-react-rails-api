@@ -24,6 +24,14 @@ const App = () => {
       setErrors([])
     }
   }
+
+  const handleCreateBlock = (data) => {
+    data.errors ? setErrors(data.errors) : setBlocks([...blocks, data.block])
+    if(!data.errors){
+      history.push('/home')
+      setErrors([])
+    }
+  }
   
   const setUserAndBlocks = (data) => {
     setCurrentUser(data.user)
@@ -61,7 +69,7 @@ const App = () => {
           <Logout setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path='/createblock'>
-          <CreateBlock setBlocks={setBlocks} blocks={blocks} setCurrentUser={setCurrentUser} handleUserLoginAndSignup={handleUserLoginAndSignup} errors={errors}/>
+          <CreateBlock handleCreateBlock={handleCreateBlock} setBlocks={setBlocks} blocks={blocks} setCurrentUser={setCurrentUser}  errors={errors}/>
         </Route>
         <Route path='/editblock'>
           <EditBlock setCurrentUser={setCurrentUser} handleUserLoginAndSignup={handleUserLoginAndSignup} errors={errors} setBlocks={setBlocks} blocks={blocks}/>

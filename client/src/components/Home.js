@@ -10,7 +10,7 @@ const Home = ({currentUser, errors, blocks, setBlocks}) => {
     
     const renderBlocks = () => {
         return blocks.map(block => {
-            return <Blocks key={block.id} block={block} setBlocks={setBlocks} errors={errors} currentUser={currentUser} />
+            return <Blocks key={block.id} blocks={blocks} block={block} setBlocks={setBlocks} errors={errors} currentUser={currentUser} />
         })
     }
     

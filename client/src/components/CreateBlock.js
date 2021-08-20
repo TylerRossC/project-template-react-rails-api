@@ -2,7 +2,7 @@ import {useState} from 'react'
 import Errors from './Errors'
 
 
-const CreateBlock = ({ handleUserLoginAndSignup, errors, setBlocks, blocks}) => {
+const CreateBlock = ({ handleCreateBlock, errors, setBlocks, blocks}) => {
 
     const [state, setState] = useState({})
 
@@ -25,10 +25,7 @@ const CreateBlock = ({ handleUserLoginAndSignup, errors, setBlocks, blocks}) => 
 
         fetch('/blocks', config)  
         .then(res => res.json())
-        .then(data => {
-            setBlocks([...blocks, data.block])
-            handleUserLoginAndSignup(data)
-        })
+        .then(data => handleCreateBlock(data))
     }
 
 

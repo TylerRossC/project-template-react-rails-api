@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Button, Nav, Form } from 'react-bootstrap'
+import Blocks from './Blocks'
 
 
-const EditBlock = ({ block, setBlocks, blocks }) => {
+const EditBlock = ({ block, setBlocks, blocks, setTab}) => {
+    
     const { id } = block
 
     const [form, setForm] = useState({ title: block.title, time: block.time, date: block.date })
@@ -25,6 +27,7 @@ const EditBlock = ({ block, setBlocks, blocks }) => {
             .then(resp => resp.json())
             .then(data => setBlocks(blocks.map(block => block.id == id ? data.block : block))
             )
+            setTab("#first")
     }
 
     return (
@@ -33,12 +36,12 @@ const EditBlock = ({ block, setBlocks, blocks }) => {
                 <label for="title">Edit block title:</label><br />
                 <input onChange={onChange} type="text" id="title" name="title" value={form.title} /><br />
                 <label for="time">Edit time:</label><br />
-                <input onChange={onChange} type="text" id="time" name="time" value={form.time} /><br /><br />
+                <input onChange={onChange} type="text" id="time" name="time" value={form.time} /><br />
                 <label for="date">Edit date:</label><br />
                 <input onChange={onChange} type="text" id="date" name="date" value={form.date} /><br /><br />
-                <Button type="submit" variant="primary">Update Block</Button>
+                <Button id='edit-button' type="submit" variant="primary">Update Block</Button>
             </form>
-            <Form>
+            {/* <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Subject</Form.Label>
                     <Form.Control type="email" placeholder="name@example.com" />
@@ -47,7 +50,7 @@ const EditBlock = ({ block, setBlocks, blocks }) => {
                     <Form.Label>Content</Form.Label>
                     <Form.Control as="textarea" rows={3} />
                 </Form.Group>
-            </Form>
+            </Form> */}
         </div>
     )
 }
