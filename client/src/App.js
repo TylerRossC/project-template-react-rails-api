@@ -41,7 +41,7 @@ const App = () => {
   const fetchUserAndBlocks = () => {
     fetch('/me')
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => setUserAndBlocks(data))
   }
 
     
