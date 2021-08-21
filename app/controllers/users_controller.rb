@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         # check for session id and log user in if they have one
         user = User.find_by(id: session[:user_id])
         if user
-            render json: { user: user }, include: ['blocks'], status: :ok
+            render json: { user: user, blocks: user.blocks }, status: :ok
         else
             render json: { errors: ["Not authorized"] }, status: :unauthorized
         end
