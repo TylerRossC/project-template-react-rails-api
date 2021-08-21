@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react'
+
+import React, {useState, useEffect} from 'react'
 import { Card, Button, Nav } from 'react-bootstrap'
 import Errors from './Errors'
 import BlockTab from './BlockTab'
@@ -9,6 +10,8 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
    
     const {id} = block
     const [tab, setTab] = useState("#first")
+    const blockTab = React.createRef()
+    const editTab = React.createRef()
 
     const handleDeleteBlock = () => {
         let config = {
@@ -23,7 +26,11 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
     }
 
     const handleTab = (e) => {
-        console.log(e.target)
+        if(e.target.href.includes('#second')){
+            blockTab.current.className = "nav-link"
+            editTab.current.className = "nav-link active"
+        } 
+
         setTab(e.target.href)
     }
 
@@ -31,7 +38,7 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
         if(tab.includes("#first")) {
             return <BlockTab block={block} errors={errors} handleDeleteBlock={handleDeleteBlock} /> 
         } else {
-            return <EditBlock handleTab={handleTab} setTab={setTab} block={block} blocks={blocks} setBlocks={setBlocks} setTab={setTab} renderTab={renderTab} />
+            return <EditBlock handleTab={handleTab} setTab={setTab} block={block} blocks={blocks} setBlocks={setBlocks} setTab={setTab} renderTab={renderTab} blockTab={blockTab} editTab={editTab} />
         }
     }
 
@@ -41,10 +48,10 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
             <Card.Header>
                 <Nav variant="tabs" defaultActiveKey={tab}>
                     <Nav.Item>
-                        <Nav.Link onClick={handleTab} href="#first">Time Block</Nav.Link>
+                        <Nav.Link ref={blockTab} onClick={handleTab} href="#first">Time Block</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link onClick={handleTab} href="#second">Edit block</Nav.Link>
+                        <Nav.Link ref={editTab} onClick={handleTab} href="#second">Edit block</Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Card.Header>
