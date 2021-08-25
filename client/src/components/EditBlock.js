@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Card, Button, Nav, Form } from 'react-bootstrap'
-import Blocks from './Blocks'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap'
+// import Blocks from './Blocks'
 
 
 const EditBlock = ({ block, setBlocks, blocks, setTab, blockTab, editTab}) => {
@@ -25,7 +25,7 @@ const EditBlock = ({ block, setBlocks, blocks, setTab, blockTab, editTab}) => {
         }
         fetch(`/blocks/${block.id}`, config)
             .then(resp => resp.json())
-            .then(data => setBlocks(blocks.map(block => block.id == id ? data.block : block))
+            .then(data => setBlocks(blocks.map(block => block.id === id ? data.block : block))
             )
             blockTab.current.className = 'nav-link active'
             editTab.current.className = 'nav-link'

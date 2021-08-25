@@ -10,7 +10,6 @@ class ApplicationController < ActionController::API
   end
 
   def authorize
-      # byebug
       if !session[:user_id]
           render json: { errors: ["Not Authorized"] }, status: :unauthorized
       else

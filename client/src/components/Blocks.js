@@ -1,6 +1,6 @@
 
-import React, {useState, useEffect} from 'react'
-import { Card, Button, Nav } from 'react-bootstrap'
+import React, {useState} from 'react'
+import { Card, Nav } from 'react-bootstrap'
 import Errors from './Errors'
 import BlockTab from './BlockTab'
 import EditBlock from './EditBlock'
@@ -38,7 +38,7 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
         if(tab.includes("#first")) {
             return <BlockTab block={block} errors={errors} handleDeleteBlock={handleDeleteBlock} /> 
         } else {
-            return <EditBlock handleTab={handleTab} setTab={setTab} block={block} blocks={blocks} setBlocks={setBlocks} setTab={setTab} renderTab={renderTab} blockTab={blockTab} editTab={editTab} />
+            return <EditBlock handleTab={handleTab} setTab={setTab} block={block} blocks={blocks} setBlocks={setBlocks} renderTab={renderTab} blockTab={blockTab} editTab={editTab} />
         }
     }
 
@@ -57,6 +57,7 @@ const Blocks = ({ errors, setBlocks, block, blocks }) => {
             </Card.Header>
             <Card.Body>
                 {renderTab()}
+                <Errors errors={errors} />
             </Card.Body>
         </Card>
     )
